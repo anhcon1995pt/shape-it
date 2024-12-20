@@ -28,7 +28,7 @@ public class LoadSceneController : MonoBehaviour
     {
         yield return null;
 
-        LoadingUI loadUI = UIManager.Instance.TryShowUI(UITypeName.Loading) as LoadingUI;                        
+        LoadingUI loadUI = UIManager.Instance.TryShowUI(UiTypeName.Loading) as LoadingUI;                        
         loadUI.StartLoading(_timeLoad, 0f, 1f, () =>
         {
 
@@ -36,7 +36,7 @@ public class LoadSceneController : MonoBehaviour
             loadSceneHandle.Completed += handle =>
             {
                 loadUI.OnCloseUI();
-            };       
+            };
         }, UIManager.Instance.CheckLoadCompleted, SaveManager.Instance.CheckLoadCompleted);
 
     }

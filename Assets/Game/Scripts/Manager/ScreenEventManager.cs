@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class ScreenEventManager : Singleton<ScreenEventManager>
 {
-    [SerializeField, ReadOnlly] Vector2Int _currentScreen;
+    [SerializeField, ReadOnly] Vector2Int _currentScreen;
     public Vector2Int CurrentScreent => _currentScreen;
 
     public Action<Vector2Int> OnScreenChange;

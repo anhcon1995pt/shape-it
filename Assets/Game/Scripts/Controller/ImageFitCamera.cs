@@ -7,7 +7,7 @@ public class ImageFitCamera : MonoBehaviour
 {
     [SerializeField]
     Vector2 _defaultScreen;
-    [SerializeField, ReadOnlly]
+    [SerializeField, ReadOnly]
     Vector2 _currentScreen;
     float _defaultRatio, _currentRatio;
     float _defaultSizeY, _currentSizeY;

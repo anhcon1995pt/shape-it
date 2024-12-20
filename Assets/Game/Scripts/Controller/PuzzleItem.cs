@@ -7,10 +7,10 @@ using UnityEngine;
 
 public class PuzzleItem : MonoBehaviour
 {
-    [ReadOnlly]
+    [ReadOnly]
     public int Id;
-    [SerializeField, ReadOnlly] SpriteRenderer _mainSpriteRen;
-    [ReadOnlly]
+    [SerializeField, ReadOnly] SpriteRenderer _mainSpriteRen;
+    [ReadOnly]
     public bool IsCorrect;
     [SerializeField] GameObject _lineObj, _backObj;
     

@@ -17,7 +17,7 @@ public class CanvasManager : Singleton<CanvasManager>
     // Start is called before the first frame update
     void Start()
     {
-        _gameplayUI = UIManager.Instance.TryShowUI(UITypeName.Gameplay) as GameplayUI;
+        _gameplayUI = UIManager.Instance.TryShowUI(UiTypeName.GamePlay) as GameplayUI;
     }
 
     // Update is called once per frame
@@ -33,11 +33,11 @@ public class CanvasManager : Singleton<CanvasManager>
 
     public void ShowWinPanel()
     {
-        UIManager.Instance.TryShowUI(UITypeName.WinUI);
+        UIManager.Instance.TryShowUI(UiTypeName.Win);
     }
 
     public void ShowLosePanel()
     {
-        UIManager.Instance.TryShowUI(UITypeName.LoseUI);
+        UIManager.Instance.TryShowUI(UiTypeName.Lose);
     }
 }

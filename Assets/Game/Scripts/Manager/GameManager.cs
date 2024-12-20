@@ -10,16 +10,21 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField, ReadOnlly]
+    [SerializeField, ReadOnly]
     GameState _gameState;
-    [SerializeField, ReadOnlly] int _levelId;
-    [ReadOnlly]
+    [SerializeField, ReadOnly] int _levelId;
+    [ReadOnly]
     public bool IsWinGame;
     [Header("Time")]
     [SerializeField] float _timePlay;
     [SerializeField] float _currentTimePlay;
     [Range(0f, 1f)]
-    [SerializeField, ReadOnlly] float _timePercent;
+    [SerializeField, ReadOnly] float _timePercent;
+    [Header("Time Freeze")]
+    [SerializeField, ReadOnly] bool _isFreezeGame;
+    [SerializeField] float _timeToFreeze;
+    [SerializeField, ReadOnly] float _curentTimeFreeze;
+
     //Tween _timeplatTween;
 
     public Action<GameState> OnBeforeGameStateChanged;
@@ -27,6 +32,7 @@ public class GameManager : Singleton<GameManager>
     public GameState GameState => _gameState;
 
     public bool IsPauseGame;
+    public bool IsFreezeGame => _isFreezeGame;
     
     protected override void Awake()
     {
@@ -44,19 +50,39 @@ public class GameManager : Singleton<GameManager>
     {
         if(_gameState == GameState.Play)
         {
-            if(_currentTimePlay > 0)
+            if(!_isFreezeGame)
             {
-                _timePercent = _currentTimePlay / _timePlay;
-                CanvasManager.Instance.GameplayUI.UpdateTimebar(_currentTimePlay, _timePercent);
-                _currentTimePlay -= Time.deltaTime;
+                if (_currentTimePlay > 0)
+                {
+                    _timePercent = _currentTimePlay / _timePlay;
+                    CanvasManager.Instance.GameplayUI.UpdateTimebar(_currentTimePlay, _timePercent);
+                    _currentTimePlay -= Time.deltaTime;
+                }
+                else
+                {
+                    _currentTimePlay = 0;
+                    _timePercent = 0;
+                    CanvasManager.Instance.GameplayUI.UpdateTimebar(0, 0);
+                    IsWinGame = false;
+                    ChangeGameState(GameState.End);
+                }
             }
             else
             {
-                _currentTimePlay = 0;
-                _timePercent = 0;
-                CanvasManager.Instance.GameplayUI.UpdateTimebar(0, 0);
-                IsWinGame = false;
-                ChangeGameState(GameState.End);
+                if (_curentTimeFreeze > 0)
+                {
+                    float freezePercent = _curentTimeFreeze / _timeToFreeze;
+                    CanvasManager.Instance.GameplayUI.UpdateFreezeTimePercent(freezePercent);
+                    _curentTimeFreeze -= Time.deltaTime;
+                }
+                else
+                {
+                    _curentTimeFreeze = 0;
+                    CanvasManager.Instance.GameplayUI.UpdateFreezeTimePercent(0);
+                    CanvasManager.Instance.GameplayUI.ShowFreezeTimeer(false);
+                    CanvasManager.Instance.GameplayUI.ShowTimeBar(true);
+                    _isFreezeGame = false;
+                }
             }
         }
     }
@@ -97,7 +123,7 @@ public class GameManager : Singleton<GameManager>
     {
         //if(_timeplatTween != null)
         //    _timeplatTween.Kill();
-        UIManager.Instance.TryShowUI(UITypeName.StartUI);
+        UIManager.Instance.TryShowUI(UiTypeName.Start);
         _levelId = SaveManager.Instance.GameData.Level;
 
         _timePlay = AssetManager.Instance.GameLevelDatas.ListLevelDatas[_levelId % AssetManager.Instance.CountLevel].TimeLevel;
@@ -108,7 +134,7 @@ public class GameManager : Singleton<GameManager>
 
         MapManager.Instance.LoadLevel(_levelId, () =>
         {
-            MapManager.Instance.CurrentLevelCtrl.ShowLevelInStart(true);
+            MapManager.Instance.CurrentLevelCtrl.ShowLevelInStart(false);
         });        
     }
 
@@ -173,5 +199,13 @@ public class GameManager : Singleton<GameManager>
         if (_timePercent < 0.5f) return 1;
         if (_timePercent < 0.8f) return 2;
         return 3;
+    }
+
+    public void ActiveFreezeGame()
+    {
+        _isFreezeGame = true;
+        _curentTimeFreeze = _timeToFreeze;
+        CanvasManager.Instance.GameplayUI.ShowFreezeTimeer(true);
+        CanvasManager.Instance.GameplayUI.ShowTimeBar(false);
     }
 }

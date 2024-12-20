@@ -9,7 +9,7 @@ public class MapManager : Singleton<MapManager>
 {
     [Header("List Level")]
     [SerializeField] Transform _levelParrent;
-    [SerializeField, ReadOnlly] LevelController _levelCtrl;
+    [SerializeField, ReadOnly] LevelController _levelCtrl;
     Dictionary<int, LevelController> _dicLevelCtrl = new Dictionary<int, LevelController>();
     public Vector2 PuzzleOffsetMove;
     public LevelController CurrentLevelCtrl => _levelCtrl;

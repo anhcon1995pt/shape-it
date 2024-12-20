@@ -10,17 +10,17 @@ namespace Game.Base
     {
         [SerializeField] Camera _mainCam;
         [SerializeField] Camera[] _camOverlays;
-        [ReadOnlly]
+        [ReadOnly]
         [SerializeField] Vector3 _camPosition;
         [SerializeField] Vector2 _contentSize;
         [SerializeField] CameraPivot _pivot;      
-        [ReadOnlly]
+        [ReadOnly]
         [SerializeField] Vector2 _screenSize;
-        [ReadOnlly]
+        [ReadOnly]
         [SerializeField] float _contentRatio;
-        [ReadOnlly]
+        [ReadOnly]
         [SerializeField] float _screenRatio;
-        [ReadOnlly]
+        [ReadOnly]
         [SerializeField] float _cameraSize;
         private void Awake()
         {

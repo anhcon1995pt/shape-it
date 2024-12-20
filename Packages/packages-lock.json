@@ -5,7 +5,8 @@
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.addressables": "1.21.21"
+        "com.unity.addressables": "1.21.21",
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
       },
       "url": "http://3.27.146.30:4873"
     },
@@ -211,6 +212,13 @@
     "com.unity.mobile.android-logcat": {
       "version": "1.4.3",
       "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.1",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"

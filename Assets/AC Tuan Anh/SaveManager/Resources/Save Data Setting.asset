@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c5b98c289bb534aa9c93766ee814ff, type: 3}
   m_Name: Save Data Setting
   m_EditorClassIdentifier: 
-  SaveFileName: ibfjrgnetrnl23q4dmowf2c0rq7imgiw
+  SaveFileName: owtppvzkqgbprg5zuthnczwxqwsya0wc
+  IsUseEncodeBase64: 0
+  IsUseEncrypt: 0
+  EncryptKey: 
+  Base64EncryptKey: 
+  Base64EncryptIV: 

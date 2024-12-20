@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TimeBarUI : MonoBehaviour
 {
-    [SerializeField, ReadOnlly, Range(0f, 1f)] float _percent;
+    [SerializeField, ReadOnly, Range(0f, 1f)] float _percent;
     [SerializeField] Image _imgTimeBar;
     [SerializeField] int _countStar;
     [SerializeField] List<GameObject> _listStar;

@@ -13,6 +13,7 @@ public class LevelController : MonoBehaviour
     Coroutine _changeAllPuzzleAlphaCoroutine;
 
     public List<PuzzleItem> ListPuzzle => _listPuzzle;
+
     // Start is called before the first frame update
     void Start()
     {

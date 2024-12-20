@@ -14,18 +14,22 @@ public class GameplayUI : NormalUI
     [SerializeField] TextMeshProUGUI _txtLevel;
     [SerializeField] TimeBarUI _timebar;
     [SerializeField] Button _btnPause;
-    [SerializeField, ReadOnlly] bool _isPause;
+    [SerializeField, ReadOnly] bool _isPause;
     [SerializeField] GameObject _imgPause, _imgPlay;
     [SerializeField] TextMeshProUGUI _txtTime;
     [Header("Panel Puzzle")]
     [SerializeField] GameObject _puzzleObj;
     [SerializeField] List<PuzzleItemUI> _puzzleItemUIs;
-    [SerializeField, ReadOnlly] PuzzleItemUI _currentPuzzleItemUiSelected;
+    [SerializeField, ReadOnly] PuzzleItemUI _currentPuzzleItemUiSelected;
     [SerializeField]
     List<PuzzleItem> _listPuzzle;
     [SerializeField] LayerMask _puzzleLayer;
-    [SerializeField, ReadOnlly] List<PuzzleItem> _listPuzzleShow;
-    [SerializeField] Button _btnHint, _btnReload;
+    [SerializeField, ReadOnly] List<PuzzleItem> _listPuzzleShow;
+    [SerializeField] Button _btnHint, _btnFreeze;
+    [Header("Time Freeze")]
+    [SerializeField] GameObject _freezeTimeObj;
+    [SerializeField] Image _imgFreezeTime;
+    [SerializeField] Image _imgButtonFreeze;
     protected override void Awake()
     {
         base.Awake();
@@ -41,7 +45,7 @@ public class GameplayUI : NormalUI
     {
         _btnPause.onClick.AddListener(BtnPauseGame_Click);
         _btnHint.onClick.AddListener(BtnHint_Click);
-        _btnReload.onClick.AddListener(BtnReload_click);
+        _btnFreeze.onClick.AddListener(BtnFreeze_click);
         for (int i = 0; i < _puzzleItemUIs.Count; i++)
         {
             _puzzleItemUIs[i].PuzzleOnClick += PuzzleItemUI_CLick;
@@ -52,7 +56,7 @@ public class GameplayUI : NormalUI
     {
         _btnPause.onClick.RemoveListener(BtnPauseGame_Click);
         _btnHint.onClick.RemoveListener(BtnHint_Click);
-        _btnReload.onClick.RemoveListener(BtnReload_click);
+        _btnFreeze.onClick.RemoveListener(BtnFreeze_click);
         for (int i = 0; i < _puzzleItemUIs.Count; i++)
         {
             _puzzleItemUIs[i].PuzzleOnClick -= PuzzleItemUI_CLick;
@@ -140,7 +144,7 @@ public class GameplayUI : NormalUI
     void OnChangeGameState(GameState state)
     {
         _btnHint.interactable = state == GameState.Play && !_isPause;
-        _btnReload.interactable = GameManager.Instance.GameState == GameState.Play && !_isPause && _listPuzzle.Count > 0;
+        _btnFreeze.interactable = GameManager.Instance.GameState == GameState.Play && !_isPause;
     }
 
     public void UpdateTimebar(float time, float percent)
@@ -152,6 +156,10 @@ public class GameplayUI : NormalUI
         _txtTime.SetText("{0:00}:{1:00}", min, s);
     }
 
+    public void ShowTimeBar(bool isShow)
+    {
+        _timebar.gameObject.SetActive(isShow);
+    }
 
     void ChangeGamePlayOrPause(bool isPause)
     {
@@ -165,7 +173,7 @@ public class GameplayUI : NormalUI
         ChangeGamePlayOrPause(_isPause);
         Time.timeScale = _isPause ? 0 : 1;
         _btnHint.interactable = GameManager.Instance.GameState == GameState.Play && !_isPause;
-        _btnReload.interactable = GameManager.Instance.GameState == GameState.Play && !_isPause && _listPuzzle.Count > 0;
+        _btnFreeze.interactable = GameManager.Instance.GameState == GameState.Play && !_isPause;
         GameManager.Instance.IsPauseGame = _isPause;
     }
 
@@ -180,11 +188,24 @@ public class GameplayUI : NormalUI
         }
     }
 
-    void BtnReload_click()
+    public void ShowFreezeTimeer(bool isShow)
     {
-        if (_listPuzzle.Count <= 0) return;
-        _listPuzzle.AddRange(_listPuzzleShow);
-        Show3PuzzleInUI();
+        _freezeTimeObj.SetActive(isShow);
+    }
+
+    public void UpdateFreezeTimePercent(float percent)
+    {
+        _imgFreezeTime.fillAmount = percent;
+        _imgButtonFreeze.fillAmount = 1f- percent;
+        _btnFreeze.interactable = percent <= 0;
+    }
+
+    void BtnFreeze_click()
+    {
+        //if (_listPuzzle.Count <= 0) return;
+        //_listPuzzle.AddRange(_listPuzzleShow);
+        //Show3PuzzleInUI();
+        GameManager.Instance.ActiveFreezeGame();
     }
 
     public void SetLevel(int levelID)
@@ -244,7 +265,7 @@ public class GameplayUI : NormalUI
         }
         _currentPuzzleItemUiSelected = null;
         puzzleItem.ShowSelected(false);
-        _btnReload.interactable = GameManager.Instance.GameState == GameState.Play && !_isPause && _listPuzzle.Count > 0;
+        _btnFreeze.interactable = GameManager.Instance.GameState == GameState.Play && !_isPause;
     }
 
     void PuzzleItemUI_CLick(PuzzleItemUI puzzleItemUi)
@@ -263,7 +284,8 @@ public class GameplayUI : NormalUI
     public void ShowPuzzlePanel(bool isShow)
     {
         _puzzleObj.SetActive(isShow);
-        _timebar.gameObject.SetActive(isShow);
-        _txtTime.transform.parent.gameObject.SetActive(isShow);
+        ShowFreezeTimeer(false);
+        ShowTimeBar(isShow);
+        //_txtTime.transform.parent.gameObject.SetActive(isShow);
     }
 }

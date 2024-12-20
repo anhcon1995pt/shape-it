@@ -844,6 +844,8 @@ MonoBehaviour:
   _timePlay: 60
   _currentTimePlay: 0
   _timePercent: 1
+  _timeToFreeze: 5
+  _curentTimeFreeze: 0
   IsPauseGame: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -9,17 +9,17 @@ using UnityEngine.UI;
 
 public class PuzzleItemUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField, ReadOnlly] Image _mainImage;
-    [SerializeField, ReadOnlly] int _id;
-    [SerializeField, ReadOnlly] PuzzleItem _puzzle;
-    [SerializeField, ReadOnlly] Vector2 _defaultSize;
-    [SerializeField, ReadOnlly] Vector2 _ingameSize;
-    [SerializeField, ReadOnlly] Transform _defaultParent;
-    [SerializeField, ReadOnlly] RectTransform _rectTranform;
-    [SerializeField, ReadOnlly] bool _isDraged;
+    [SerializeField, ReadOnly] Image _mainImage;
+    [SerializeField, ReadOnly] int _id;
+    [SerializeField, ReadOnly] PuzzleItem _puzzle;
+    [SerializeField, ReadOnly] Vector2 _defaultSize;
+    [SerializeField, ReadOnly] Vector2 _ingameSize;
+    [SerializeField, ReadOnly] Transform _defaultParent;
+    [SerializeField, ReadOnly] RectTransform _rectTranform;
+    [SerializeField, ReadOnly] bool _isDraged;
     [SerializeField] RectTransform _contentRect;
     [SerializeField] Vector2 _offsetDrag;
-    [SerializeField, ReadOnlly] bool _isInsideContentRect;
+    [SerializeField, ReadOnly] bool _isInsideContentRect;
     [SerializeField] LayerMask _puzzleLayer;
     [SerializeField] GameObject _lineObj;
     public Action<PuzzleItemUI> OnPuzzleCorrect;

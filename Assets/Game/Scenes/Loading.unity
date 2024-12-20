@@ -455,6 +455,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isDontDestroyAndLoad: 1
   _saveFileName: 87c3e7e3a96f933b449d07a5a78f85af
+  _gameData:
+    IsGameDataCreated: 0
+    Ver: 
+    PlayerName: 
+    Level: 0
+    Coin: 0
+    Diamond: 0
+    Score: 0
+    BestScore: 0
+    Sound: 0
+    Music: 0
+    Haptic: 0
   CheckLoadCompleted:
     IsLoadCompleted: 0
 --- !u!1 &1410236598
@@ -543,31 +555,31 @@ MonoBehaviour:
   _isShowLoadingUiInStart: 1
   _loadingUIPrefab: {fileID: 6158052500590400958, guid: 4cd8eaff1da83494c80b67ea28b4d0c6, type: 3}
   _listUIInGame:
-  - TypeName: 0
+  - UiName: Loading UI
     AssetPrefabRef:
       m_AssetGUID: 4cd8eaff1da83494c80b67ea28b4d0c6
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-  - TypeName: 2
+  - UiName: Start UI
     AssetPrefabRef:
       m_AssetGUID: 313b4a91b627075499a9ba604943085b
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-  - TypeName: 13
+  - UiName: Game Play
     AssetPrefabRef:
       m_AssetGUID: ee83c6c849fa2cf4fad41af3ccedcf2e
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-  - TypeName: 4
+  - UiName: Win UI
     AssetPrefabRef:
       m_AssetGUID: 6778ddff514b89742ac7ee6c6715f151
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-  - TypeName: 5
+  - UiName: Lose UI
     AssetPrefabRef:
       m_AssetGUID: 9ccc9739cca15d74a9a1636d9feee595
       m_SubObjectName: 
