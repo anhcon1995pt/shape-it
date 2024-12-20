@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: a98476836bacce544afbd4e6d241561a
+  m_SerializeEntries:
+  - m_GUID: 2a10d7808e0aa5f449c3bc3aec009d02
+    m_Address: Assets/Game/Prefabs/Levels/l v_2.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 313b4a91b627075499a9ba604943085b
+    m_Address: Assets/Game/Prefabs/UI/Start UI.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ui
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3fc8acdd13e6c734bafef6554d6fdbcd
+    m_Address: Assets/Game/Scenes/Gameplay.unity
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4054cbfed7924f544bb4cd5326be3459
+    m_Address: Assets/Game/Prefabs/Levels/l v_8.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4cd8eaff1da83494c80b67ea28b4d0c6
+    m_Address: Assets/Game/Prefabs/UI/LoadingUI.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ui
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 510a9a351358fe94ea8fd35042e095c4
+    m_Address: Assets/Game/Prefabs/Levels/l v_1.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f5157ddf3a8fb9439881ce5506a2574
+    m_Address: Assets/Game/Prefabs/Levels/l v_9.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6778ddff514b89742ac7ee6c6715f151
+    m_Address: Assets/Game/Prefabs/UI/WinUI.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ui
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 990d10b4361f0cb4ca6114a575483f32
+    m_Address: Assets/Game/Prefabs/Levels/l v_4.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a6f3974d70a9a34c84658bd0142da2d
+    m_Address: Assets/Game/Prefabs/Levels/l v_3.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9ccc9739cca15d74a9a1636d9feee595
+    m_Address: Assets/Game/Prefabs/UI/LoseUI.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ui
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9659c95221d7e844a0d3aae3b2a797f
+    m_Address: Assets/Game/Prefabs/Levels/l v_7.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - level
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee83c6c849fa2cf4fad41af3ccedcf2e
+    m_Address: Assets/Game/Prefabs/UI/Gameplay UI.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ui
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: cd05069828f336d48a02a6aa326e55ca, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 92af197b9d5b69844ba3d4e6b4fac77a, type: 2}
+    - {fileID: 11400000, guid: 0944c9bc11bf6cd4c84ba7a48a53cd04, type: 2}
