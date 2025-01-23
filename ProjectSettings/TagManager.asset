@@ -44,3 +44,6 @@ TagManager:
   - name: Line
     uniqueID: 3002664627
     locked: 0
+  - name: effect
+    uniqueID: 3532921275
+    locked: 0

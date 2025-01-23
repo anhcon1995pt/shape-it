@@ -8,7 +8,7 @@
         "com.unity.addressables": "1.21.21",
         "com.unity.nuget.newtonsoft-json": "3.2.1"
       },
-      "url": "http://3.27.146.30:4873"
+      "url": "https://anhcon1995pt.io.vn"
     },
     "com.ac.gametool.ui": {
       "version": "0.0.1",
@@ -18,7 +18,31 @@
         "com.ac.gametool.core": "0.0.1",
         "com.unity.textmeshpro": "3.0.9"
       },
-      "url": "http://3.27.146.30:4873"
+      "url": "https://anhcon1995pt.io.vn"
+    },
+    "com.benoitfreslon.vibration": {
+      "version": "https://github.com/BenoitFreslon/Vibration.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "0fe3ea18d2288b0c60dde2f369a70dc207f152b0"
+    },
+    "com.coffee.ui-particle": {
+      "version": "https://github.com/mob-sakai/ParticleEffectForUGUI.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.particlesystem": "1.0.0"
+      },
+      "hash": "f4b28b68b1e1367ac7fdc89f1e750ee7a148e325"
+    },
+    "com.coffee.unmask": {
+      "version": "https://github.com/mob-sakai/UnmaskForUGUI.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "33356da2c43fa28397192baee70910c978e3169f"
     },
     "com.unity.2d.animation": {
       "version": "9.1.2",
@@ -221,6 +245,15 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.recorder": {
+      "version": "4.0.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.timeline": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.scriptablebuildpipeline": {
