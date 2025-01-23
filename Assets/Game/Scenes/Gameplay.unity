@@ -149,8 +149,8 @@ Transform:
   m_GameObject: {fileID: 14405418}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 0.9, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.2914001, y: 1.0566, z: 1.174}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1405078801}
@@ -565,7 +565,7 @@ MonoBehaviour:
   _mainCam: {fileID: 519420031}
   _camOverlays: []
   _camPosition: {x: 0, y: 0, z: 0}
-  _contentSize: {x: 11, y: 18}
+  _contentSize: {x: 12, y: 18}
   _pivot: 1
   _screenSize: {x: 0, y: 0}
   _contentRatio: 0
@@ -840,12 +840,30 @@ MonoBehaviour:
   _isDontDestroyAndLoad: 0
   _gameState: 0
   _levelId: 0
+  _currentLevelData:
+    Id: 0
+    TimeLevel: 0
+    Coin: 0
+    LevelPrefab:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
   IsWinGame: 0
   _timePlay: 60
   _currentTimePlay: 0
   _timePercent: 1
-  _timeToFreeze: 5
+  _isFreezeGame: 0
+  _timeToFreeze: 15
   _curentTimeFreeze: 0
+  _comboCount: 1
+  _isCombo: 0
+  _coinPrefab:
+    m_AssetGUID: bd535dcba0ffee94b8129a3205546f86
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  _isTutCompleted: 0
   IsPauseGame: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

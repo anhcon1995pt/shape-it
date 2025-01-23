@@ -14,5 +14,7 @@ namespace AC.GameTool.SaveData
         public bool Sound;
         public bool Music;
         public bool Haptic;
+        public bool IsTutCompleted;
+        public int TutIndex;
     }
 }

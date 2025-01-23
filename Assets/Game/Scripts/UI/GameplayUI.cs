@@ -1,13 +1,18 @@
 using AC.GameTool.Attribute;
+using AC.GameTool.Core;
+using AC.GameTool.SaveData;
 using AC.GameTool.UI;
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameplayUI : NormalUI
 {
@@ -30,6 +35,22 @@ public class GameplayUI : NormalUI
     [SerializeField] GameObject _freezeTimeObj;
     [SerializeField] Image _imgFreezeTime;
     [SerializeField] Image _imgButtonFreeze;
+    [Header("Combo")]
+    [SerializeField] Animator _comboAni;
+    [SerializeField] TextMeshProUGUI _txtCombo;
+    [Header("Coin")]
+    [SerializeField, ReadOnly] int _coin;
+    [SerializeField] TextMeshProUGUI _txtCoin;
+    [SerializeField] GameObject _iconAdBtnHints,_iconAdsTimeFreeze;
+    [SerializeField] GameObject _showCoinBtnHints, _showCoinTimeFreeze;
+    
+    [SerializeField] Transform _coinBarIcon;
+    PuzzleItemUI _puzzleHint;
+    public DamageImageController DamageCtrl;
+
+    public PuzzleItemUI CurrentPuzzleItemUiSelected { get => _currentPuzzleItemUiSelected; set => _currentPuzzleItemUiSelected = value; }
+    public PuzzleItemUI PuzzleHint { get => _puzzleHint; set => _puzzleHint = value; }
+
     protected override void Awake()
     {
         base.Awake();
@@ -50,6 +71,7 @@ public class GameplayUI : NormalUI
         {
             _puzzleItemUIs[i].PuzzleOnClick += PuzzleItemUI_CLick;
         }
+        SaveManager.Instance.OnChangeGameData += ChangeGameDataCallback;
     }
 
     void RemoveAllListener()
@@ -61,6 +83,7 @@ public class GameplayUI : NormalUI
         {
             _puzzleItemUIs[i].PuzzleOnClick -= PuzzleItemUI_CLick;
         }
+        SaveManager.Instance.OnChangeGameData -= ChangeGameDataCallback;
     }
     // Start is called before the first frame update
     void Start()
@@ -101,7 +124,7 @@ public class GameplayUI : NormalUI
 
     void RaycastItem(Vector3 pointPos)
     {
-        if (_currentPuzzleItemUiSelected == null) return;
+        if (CurrentPuzzleItemUiSelected == null) return;
         RaycastHit2D[] hit2Ds = Physics2D.GetRayIntersectionAll(Camera.main.ScreenPointToRay(pointPos), Mathf.Infinity, _puzzleLayer);
         for(int i = 0; i < hit2Ds.Length; i++)
         {
@@ -111,20 +134,23 @@ public class GameplayUI : NormalUI
                 PuzzleItem puzzle = hit2D.collider.GetComponent<PuzzleItem>();
                 if (puzzle != null)
                 {
-                    if (puzzle.Id == _currentPuzzleItemUiSelected.Id)
+                    if (puzzle.Id == CurrentPuzzleItemUiSelected.Id)
                     {
                         puzzle.SetPuzzleItemIsCorrect();
-                        _currentPuzzleItemUiSelected.OnPuzzleCorrect?.Invoke(_currentPuzzleItemUiSelected);
-                        break;
+                        CurrentPuzzleItemUiSelected.OnPuzzleCorrect?.Invoke(CurrentPuzzleItemUiSelected);
+                        return;
                     }
-
+                    
                 }
             }
         }
-        if(_currentPuzzleItemUiSelected != null)
+        if(CurrentPuzzleItemUiSelected != null)
         {
-            _currentPuzzleItemUiSelected.ShowSelected(false);
-            _currentPuzzleItemUiSelected = null;
+            VibrateManager.Instance.VibratePuzzleFaile();
+            DamageCtrl.StartShowDamage();
+            CurrentPuzzleItemUiSelected.ShowSelected(false);
+            CurrentPuzzleItemUiSelected.RunAniFaile();
+            CurrentPuzzleItemUiSelected = null;
         }        
     }
 
@@ -133,7 +159,7 @@ public class GameplayUI : NormalUI
         base.OnUiShow();
         GameManager.Instance.OnAfterGameStateChanged += OnChangeGameState;
         ChangeGamePlayOrPause(_isPause);
-
+        ChangeGameDataCallback(SaveManager.Instance.GameData);
     }
     public override void OnCloseUI()
     {
@@ -180,12 +206,42 @@ public class GameplayUI : NormalUI
 
     void BtnHint_Click()
     {
+        GameData gameData = SaveManager.Instance.GameData;
+        int coin = gameData.Coin;
+        if (coin >= 100)
+        {
+            coin -= 100;
+            gameData.Coin = coin;
+            SaveManager.Instance.GameData = gameData;
+            ActiveHints();
+        }
+        else
+        {
+            //SHow Ads
+            ActiveHints();
+        }
+
+       
+    }
+
+    public void ActiveHints()
+    {
+        PuzzleHint = null;
         PuzzleItemUI puzzleItemUI = _puzzleItemUIs.Find(x => x.IsActive);
         if (puzzleItemUI != null)
         {
-            puzzleItemUI.RunAnimationFadeItem();
-            puzzleItemUI.Puzzle.RunAnimationFadeItem();
+            PuzzleHint = puzzleItemUI;
+            PuzzleHint.RunAnimationFadeItem();
+            PuzzleHint.Puzzle.RunAnimationFadeItem();
         }
+    }
+
+    public void DeActiveHints()
+    {
+        if (PuzzleHint == null) return;
+        PuzzleHint.StopAnimationFadeItem();
+        PuzzleHint.Puzzle.StopAnimationFadeItem();
+        PuzzleHint = null;
     }
 
     public void ShowFreezeTimeer(bool isShow)
@@ -205,6 +261,25 @@ public class GameplayUI : NormalUI
         //if (_listPuzzle.Count <= 0) return;
         //_listPuzzle.AddRange(_listPuzzleShow);
         //Show3PuzzleInUI();
+        GameData gameData = SaveManager.Instance.GameData;
+        int coin = gameData.Coin;
+        if(coin >= 200)
+        {
+            coin -= 200;
+            gameData.Coin = coin;
+            SaveManager.Instance.GameData = gameData;
+            ActiveTimeFreeze();
+        }
+        else
+        {
+            //SHow Ads
+            ActiveTimeFreeze();
+        }
+        
+    }
+
+    void ActiveTimeFreeze()
+    {
         GameManager.Instance.ActiveFreezeGame();
     }
 
@@ -240,7 +315,7 @@ public class GameplayUI : NormalUI
         {
             _puzzleItemUIs[i].ShowSelected(false);
         }
-        _currentPuzzleItemUiSelected = null;
+        CurrentPuzzleItemUiSelected = null;
     }
 
     void PuzzleCorrect(PuzzleItemUI puzzleItem)
@@ -263,21 +338,31 @@ public class GameplayUI : NormalUI
         {
             puzzleItem.SetActivePuzzleUI(false);            
         }
-        _currentPuzzleItemUiSelected = null;
+        CurrentPuzzleItemUiSelected = null;
         puzzleItem.ShowSelected(false);
         _btnFreeze.interactable = GameManager.Instance.GameState == GameState.Play && !_isPause;
     }
 
     void PuzzleItemUI_CLick(PuzzleItemUI puzzleItemUi)
     {
-        if(_currentPuzzleItemUiSelected != puzzleItemUi)
+        if(CurrentPuzzleItemUiSelected != puzzleItemUi)
         {
-            if(_currentPuzzleItemUiSelected != null)
+            if(CurrentPuzzleItemUiSelected != null)
             {
-                _currentPuzzleItemUiSelected.ShowSelected(false);
+                CurrentPuzzleItemUiSelected.ShowSelected(false);
             }
-            _currentPuzzleItemUiSelected = puzzleItemUi;
-            _currentPuzzleItemUiSelected.ShowSelected(true);
+            CurrentPuzzleItemUiSelected = puzzleItemUi;
+            CurrentPuzzleItemUiSelected.ShowSelected(true);
+            GameData gameData = SaveManager.Instance.GameData;
+            if (!gameData.IsTutCompleted)
+            {
+                if(gameData.TutIndex == 0)
+                {
+                    gameData.TutIndex = 1;
+                    SaveManager.Instance.GameData = gameData;
+                    UIManager.Instance.TryShowUI(UiTypeName.Tutorial);
+                }                
+            }
         }
     }
 
@@ -287,5 +372,54 @@ public class GameplayUI : NormalUI
         ShowFreezeTimeer(false);
         ShowTimeBar(isShow);
         //_txtTime.transform.parent.gameObject.SetActive(isShow);
+    }
+
+    public void ShowCombo(int combo)
+    {
+        _txtCombo.SetText($"COMBO X<size=150%>{combo}");
+        _comboAni.Play("combo");
+    }
+
+    void ChangeGameDataCallback(GameData gameData)
+    {
+        if(_coin != SaveManager.Instance.GameData.Coin)
+        {
+            _coin = SaveManager.Instance.GameData.Coin;
+            _txtCoin.SetText("{0}", _coin);
+
+            bool showCoinBtnHint = _coin >= 100;
+            bool showCoinBtnTimeFreeze = _coin >= 200;
+            _iconAdBtnHints.SetActive(!showCoinBtnHint);
+            _iconAdsTimeFreeze.SetActive(!showCoinBtnTimeFreeze);
+            _showCoinBtnHints.SetActive(showCoinBtnHint);
+            _showCoinTimeFreeze.SetActive(showCoinBtnTimeFreeze);
+        }       
+    }
+
+    public void ShowCoinFly(Vector3 pos, int countFly, int coinEarn, Action completed = null)
+    {
+        int coin = _coin;
+        int deltaCoin = coinEarn / countFly;
+        CoinFlyUI coinFlyUI = UIManager.Instance.TryShowUI(UiTypeName.CoinFly) as CoinFlyUI;
+
+        coinFlyUI.ShowCoinFly(pos, _coinBarIcon.position, countFly, coinEarn, indexFly =>
+        {
+            if (indexFly >= countFly - 1)
+            {
+                completed?.Invoke();
+            }
+            else
+            {
+                coin += deltaCoin;
+                _txtCoin.SetText("{0}", coin);
+            }
+            _txtCoin.transform.DOKill();
+            _txtCoin.transform.localScale = Vector3.one;
+            _txtCoin.transform.DOPunchScale(new Vector3(0.25f, 0.25f, 0.25f), 0.5f, 1).OnComplete(() =>
+            {
+                _txtCoin.transform.localScale = Vector3.one;
+            });
+        });
+        
     }
 }

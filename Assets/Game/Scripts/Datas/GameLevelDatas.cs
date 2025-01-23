@@ -15,5 +15,7 @@ public class LevelData
 {
     public int Id;
     public float TimeLevel;
+    public int Coin;
     public AssetReference LevelPrefab;
+    
 }

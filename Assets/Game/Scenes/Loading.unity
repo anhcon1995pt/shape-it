@@ -153,6 +153,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &302665396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 302665397}
+  - component: {fileID: 302665398}
+  m_Layer: 0
+  m_Name: Vibrate Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &302665397
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302665396}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 540, y: 960, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &302665398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302665396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22bee3b1a0f34024fbd632a73c465565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isDontDestroyAndLoad: 1
 --- !u!1 &530188232
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,6 +512,8 @@ MonoBehaviour:
     Sound: 0
     Music: 0
     Haptic: 0
+    IsTutCompleted: 0
+    TutIndex: 0
   CheckLoadCompleted:
     IsLoadCompleted: 0
 --- !u!1 &1410236598
@@ -567,7 +614,7 @@ MonoBehaviour:
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
-  - UiName: Game Play
+  - UiName: Gameplay UI
     AssetPrefabRef:
       m_AssetGUID: ee83c6c849fa2cf4fad41af3ccedcf2e
       m_SubObjectName: 
@@ -582,6 +629,18 @@ MonoBehaviour:
   - UiName: Lose UI
     AssetPrefabRef:
       m_AssetGUID: 9ccc9739cca15d74a9a1636d9feee595
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - UiName: CoinFly UI
+    AssetPrefabRef:
+      m_AssetGUID: cd7c5d7fc91bd87448eb46f7290c437f
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - UiName: Tutorial UI
+    AssetPrefabRef:
+      m_AssetGUID: fd644a7ace8d70f45a817b3491c053ab
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
@@ -637,6 +696,66 @@ MonoBehaviour:
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
+--- !u!1 &1906629715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1906629716}
+  - component: {fileID: 1906629717}
+  m_Layer: 0
+  m_Name: Pool Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1906629716
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906629715}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8966862, y: -3.0330684, z: 0.065778226}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1906629717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906629715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eafc56a966031594ba7ebf3e40899123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isDontDestroyAndLoad: 1
+  _listPoolItem:
+  - PrefabRef:
+      m_AssetGUID: bd535dcba0ffee94b8129a3205546f86
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Count: 2
+  - PrefabRef:
+      m_AssetGUID: 632849d5db00b5b45883ebc06ee9268c
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Count: 5
+  CheckLoadAssetCompleted:
+    IsLoadCompleted: 0
 --- !u!1 &2055223877
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,5 +842,7 @@ SceneRoots:
   - {fileID: 1825185931}
   - {fileID: 228853138}
   - {fileID: 2059169955}
+  - {fileID: 1906629716}
   - {fileID: 1309712066}
   - {fileID: 1725298747}
+  - {fileID: 302665397}

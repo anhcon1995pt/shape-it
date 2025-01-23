@@ -15,6 +15,7 @@ MonoBehaviour:
   ListLevelDatas:
   - Id: 0
     TimeLevel: 60
+    Coin: 100
     LevelPrefab:
       m_AssetGUID: 510a9a351358fe94ea8fd35042e095c4
       m_SubObjectName: 
@@ -22,6 +23,7 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
   - Id: 1
     TimeLevel: 60
+    Coin: 100
     LevelPrefab:
       m_AssetGUID: 2a10d7808e0aa5f449c3bc3aec009d02
       m_SubObjectName: 
@@ -29,6 +31,7 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
   - Id: 2
     TimeLevel: 90
+    Coin: 150
     LevelPrefab:
       m_AssetGUID: 9a6f3974d70a9a34c84658bd0142da2d
       m_SubObjectName: 
@@ -36,6 +39,7 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
   - Id: 3
     TimeLevel: 90
+    Coin: 150
     LevelPrefab:
       m_AssetGUID: 990d10b4361f0cb4ca6114a575483f32
       m_SubObjectName: 
@@ -43,6 +47,7 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
   - Id: 4
     TimeLevel: 90
+    Coin: 150
     LevelPrefab:
       m_AssetGUID: b9659c95221d7e844a0d3aae3b2a797f
       m_SubObjectName: 
@@ -50,6 +55,7 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
   - Id: 5
     TimeLevel: 120
+    Coin: 200
     LevelPrefab:
       m_AssetGUID: 4054cbfed7924f544bb4cd5326be3459
       m_SubObjectName: 
@@ -57,8 +63,57 @@ MonoBehaviour:
       m_EditorAssetChanged: 0
   - Id: 6
     TimeLevel: 90
+    Coin: 200
     LevelPrefab:
       m_AssetGUID: 5f5157ddf3a8fb9439881ce5506a2574
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - Id: 7
+    TimeLevel: 180
+    Coin: 300
+    LevelPrefab:
+      m_AssetGUID: bf69a29afb7b79e4aa064ef75a2bd865
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - Id: 8
+    TimeLevel: 120
+    Coin: 200
+    LevelPrefab:
+      m_AssetGUID: 37f84286012b15049ac502c251718346
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - Id: 9
+    TimeLevel: 120
+    Coin: 200
+    LevelPrefab:
+      m_AssetGUID: 4f851b56353e69247919874e7cc745b9
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - Id: 10
+    TimeLevel: 120
+    Coin: 200
+    LevelPrefab:
+      m_AssetGUID: a088bbd497e834d4cae3c7ab0da0d711
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - Id: 11
+    TimeLevel: 120
+    Coin: 200
+    LevelPrefab:
+      m_AssetGUID: 05999f93370cf3d46a803e34f902b2ee
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+  - Id: 12
+    TimeLevel: 120
+    Coin: 200
+    LevelPrefab:
+      m_AssetGUID: 417a5f74afa8d7c4f9ab6c30f1982b6b
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
